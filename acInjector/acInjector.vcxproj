@@ -22,7 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{c0e09ce4-9a91-46ef-9bfd-4a9f92ecca65}</ProjectGuid>
-    <RootNamespace>MakingInjectorAndDLL</RootNamespace>
+    <RootNamespace>acInjector</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>acInjector</ProjectName>
   </PropertyGroup>
