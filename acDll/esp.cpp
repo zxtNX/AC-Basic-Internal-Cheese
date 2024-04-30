@@ -61,7 +61,7 @@ void DrawEverything(std::vector<EntityInfo>& entityInfos, Entity* localPlayer, f
     // Convertir MAX_FOV en radians
     float maxFovRadians = static_cast<float>(maxFov * (gPI / 180.0));
 
-    // Dessiner le cercle au centre de l'écran avec la taille basée sur maxFov
+    // Dessiner le cercle au centre de l'Ã©cran avec la taille basÃ©e sur maxFov
     float centerX = static_cast<float>(screenWidth / 2);
     float centerY = static_cast<float>(screenHeight / 2);
     float circleRadius = static_cast<float>(tan(maxFovRadians / 2.0) * screenWidth / 2.0); // Calcul du rayon en fonction de l'angle de champ de vision
@@ -165,14 +165,14 @@ void DrawSnaplines(EntityInfo& info, Entity* localPlayer, float boxBottomY)
 {
     // Si la cible est un ennemi, afficher la snapline
     if (info.entity->team != localPlayer->team) {
-        // Couleur des lignes (bleu par défaut)
+        // Couleur des lignes (bleu par dÃ©faut)
         glColor3ub(255, 0, 0);
 
-        // Dessiner la ligne de l'ennemi à la position du joueur local
+        // Dessiner la ligne de l'ennemi Ã  la position du joueur local
         glLineWidth(1.0f);
         glBegin(GL_LINES);
-        glVertex2f(static_cast<float>(screenWidth / 2), 0); // Point de départ (milieu en bas de l'écran)
-        glVertex2f(info.screenX, boxBottomY);  // Point d'arrivée (position de l'ennemi)
+        glVertex2f(static_cast<float>(screenWidth / 2), 0); // Point de dÃ©part (milieu en bas de l'Ã©cran)
+        glVertex2f(info.screenX, boxBottomY);  // Point d'arrivÃ©e (position de l'ennemi)
         glEnd();
     }
 }
@@ -182,25 +182,25 @@ void DrawHealthBar(EntityInfo& info, Entity* localPlayer, float distanceAdjustme
     const int maxHealth = 100;
     const int numberOfSlices = 10; // CHaque 10% HP donc 10*10 = 100
 
-    // Calcul de la hauteur de la barre de vie basée sur la santé actuelle
+    // Calcul de la hauteur de la barre de vie basÃ©e sur la santÃ© actuelle
     float healthPercentage = (float)info.entity->health / maxHealth;
-    float barHeight = 11.0f * distanceAdjustment;  // Hauteur totale de la boîte
-    float healthBarHeight = barHeight * healthPercentage;  // Hauteur de la barre de vie proportionnelle à la santé
+    float barHeight = 11.0f * distanceAdjustment;  // Hauteur totale de la boÃ®te
+    float healthBarHeight = barHeight * healthPercentage;  // Hauteur de la barre de vie proportionnelle Ã  la santÃ©
 
-    // Définition de la largeur et la position de la barre de vie
+    // DÃ©finition de la largeur et la position de la barre de vie
     float barWidth = 0.5f * distanceAdjustment;
     float barXLeft = info.screenX + 2.65f * distanceAdjustment + 0.1f * distanceAdjustment;
     float barXRight = barXLeft + barWidth;
-    float barBottomY = info.screenY - 9.5f * distanceAdjustment; // Bas de la barre de santé totale
-    float barTopY = barBottomY + healthBarHeight;  // Haut de la barre de vie en fonction de la santé actuelle
+    float barBottomY = info.screenY - 9.5f * distanceAdjustment; // Bas de la barre de santÃ© totale
+    float barTopY = barBottomY + healthBarHeight;  // Haut de la barre de vie en fonction de la santÃ© actuelle
 
-    // Ajustement pour l'encadré blanc
-    float outlineTopY = barBottomY + barHeight;  // Le haut de l'encadré doit être au top de la barre totale
+    // Ajustement pour l'encadrÃ© blanc
+    float outlineTopY = barBottomY + barHeight;  // Le haut de l'encadrÃ© doit Ãªtre au top de la barre totale
 
     // Dessiner les tranches sur la barre de vie
-    glColor3ub(255, 255, 255); // Utilisez la couleur blanche pour les lignes de séparation
+    glColor3ub(255, 255, 255); // Utilise la couleur blanche pour les lignes de sÃ©paration
     float sliceHeight = barHeight / numberOfSlices; // Hauteur de chaque tranche
-    for (int i = 1; i < numberOfSlices; ++i) { // Commence à 1 pour ne pas dessiner au bas de la barre
+    for (int i = 1; i < numberOfSlices; ++i) { // Commence Ã  1 pour ne pas dessiner au bas de la barre
         float sliceY = barBottomY + sliceHeight * i;
         glBegin(GL_LINES);
         glVertex2f(barXLeft, sliceY);
@@ -208,25 +208,25 @@ void DrawHealthBar(EntityInfo& info, Entity* localPlayer, float distanceAdjustme
         glEnd();
     }
 
-    // Définir la couleur pour le contour (blanc)
+    // DÃ©finir la couleur pour le contour (blanc)
     glColor3ub(255, 255, 255);
 
-    // Dessiner le contour extérieur de la barre
+    // Dessiner le contour extÃ©rieur de la barre
     glLineWidth(0.2f);
     glBegin(GL_LINE_LOOP);
-    glVertex2f(barXLeft, outlineTopY);  // Haut gauche de l'encadré
-    glVertex2f(barXRight, outlineTopY);  // Haut droit de l'encadré
-    glVertex2f(barXRight, barBottomY);  // Bas droit de l'encadré
-    glVertex2f(barXLeft, barBottomY);  // Bas gauche de l'encadré
+    glVertex2f(barXLeft, outlineTopY);  // Haut gauche de l'encadrÃ©
+    glVertex2f(barXRight, outlineTopY);  // Haut droit de l'encadrÃ©
+    glVertex2f(barXRight, barBottomY);  // Bas droit de l'encadrÃ©
+    glVertex2f(barXLeft, barBottomY);  // Bas gauche de l'encadrÃ©
     glEnd();
 
-    // Définir la couleur de la barre de vie
+    // DÃ©finir la couleur de la barre de vie
     if (healthPercentage > 0.666)
-        glColor3ub(0, 255, 0);  // Vert pour la santé élevée
+        glColor3ub(0, 255, 0);  // Vert pour la santÃ© Ã©levÃ©e
     else if (healthPercentage > 0.333)
-        glColor3ub(255, 127, 0);  // Orange pour la santé assez faible
+        glColor3ub(255, 127, 0);  // Orange pour la santÃ© assez faible
     else
-        glColor3ub(255, 0, 0);  // Rouge pour la santé faible
+        glColor3ub(255, 0, 0);  // Rouge pour la santÃ© faible
 
     // Dessiner la barre de vie
     glBegin(GL_QUADS);
@@ -240,16 +240,16 @@ void DrawHealthBar(EntityInfo& info, Entity* localPlayer, float distanceAdjustme
 void DrawCircle(float cx, float cy, float r, int num_segments) {
     glBegin(GL_LINE_LOOP);
     for (int i = 0; i < num_segments; i++) {
-        float theta = 2.0f * 3.1415926f * float(i) / float(num_segments);//get the current angle
-        float x = r * cosf(theta);//calculate the x component
-        float y = r * sinf(theta);//calculate the y component
-        glVertex2f(x + cx, y + cy);//output vertex
+        float theta = 2.0f * 3.1415926f * float(i) / float(num_segments); // Get the current angle
+        float x = r * cosf(theta);  // Calculate the x component
+        float y = r * sinf(theta);  // Calculate the y component
+        glVertex2f(x + cx, y + cy); // Output vertex
     }
     glEnd();
 }
 
 void DrawCenterCircle(float cx, float cy, float r, int num_segments) {
-    // Déplacer le point de référence vers le centre de l'écran
+    // DÃ©placer le point de rÃ©fÃ©rence vers le centre de l'Ã©cran
     glPushMatrix();
     glLoadIdentity();
     glTranslatef(cx, cy, 0.0f);
@@ -258,6 +258,6 @@ void DrawCenterCircle(float cx, float cy, float r, int num_segments) {
     glColor3ub(255, 255, 255); // Couleur blanche pour le cercle
     DrawCircle(0.0f, 0.0f, r, num_segments);
 
-    // Rétablir la matrice de projection
+    // RÃ©tablir la matrice de projection
     glPopMatrix();
 }
