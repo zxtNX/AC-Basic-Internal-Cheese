@@ -15,11 +15,11 @@ constexpr const T& clamp(const T& value, const T& min, const T& max) {
     return (value < min) ? min : ((value > max) ? max : value);
 }
 
-// Défini une constante pour la vitesse de transition de l'aimbot
-const float AIM_SPEED = 0.1f; // 0.1 radians par mise à jour
+// DÃ©fini une constante pour la vitesse de transition de l'aimbot
+const float AIM_SPEED = 0.1f; // 0.1 radians par mise Ã  jour
 const float MAX_ANGULAR_SPEED = 5.0f;
-const float AIM_VARIABILITY = 0.07f; // Variabilité de l'aim en degrés
-const float AIM_PAUSE_PROBABILITY = 0.1f; // Probabilité de faire une pause dans l'aim
+const float AIM_VARIABILITY = 0.07f; // VariabilitÃ© de l'aim en degrÃ©s
+const float AIM_PAUSE_PROBABILITY = 0.1f; // ProbabilitÃ© de faire une pause dans l'aim
 
 bool BeTargetable(float toZ, float toY, float toX, float fromZ, float fromY, float fromX) {
     bool bTargetable = false;
@@ -51,8 +51,8 @@ float NormalizeAngle(float angle) {
 }
 
 float CalculateFOVAngle(Entity* localPlayer, float relX, float relY, float relZ) {
-    float angleXY = static_cast<float>(atan2(relY, relX) * 180.0 / gPI + 90.0);  // Angle XY par rapport à l'axe X
-    float angleZ = static_cast<float>(atan2(relZ, sqrt(relX * relX + relY * relY)) * 180.0 / gPI);  // Angle Z par rapport à XY
+    float angleXY = static_cast<float>(atan2(relY, relX) * 180.0 / gPI + 90.0);  // Angle XY par rapport Ã  l'axe X
+    float angleZ = static_cast<float>(atan2(relZ, sqrt(relX * relX + relY * relY)) * 180.0 / gPI);  // Angle Z par rapport Ã  XY
 
     float adjustedAngleXY = static_cast<float>(fmod(angleXY - localPlayer->yaw + 360.0, 360.0));
     if (adjustedAngleXY > 180.0)
@@ -73,7 +73,7 @@ void Aimbot(Entity* closestEnemy, Entity* localPlayer)
     float relY = closestEnemy->yHeadCoord - localPlayer->yHeadCoord;
     float relZ = closestEnemy->zHeadCoord - localPlayer->zHeadCoord;
 
-    // Check if the target is obstructed by an obstacle (e.g., wall)
+    // Check if the target is obstructed by an obstacle (e.g. a wall)
     bool isObstructed = !BeTargetable(closestEnemy->zHeadCoord, closestEnemy->yHeadCoord, closestEnemy->xHeadCoord,
         localPlayer->zHeadCoord, localPlayer->yHeadCoord, localPlayer->xHeadCoord);
 
