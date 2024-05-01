@@ -26,7 +26,7 @@ void MainHackLoop()
         gNumberOfPlayers = currentNumberOfPlayers;
     }
 
-    entityInfos.clear(); // Nettoyer la liste à chaque mise à jour pour éviter des données obsolètes
+    entityInfos.clear(); // Nettoyer la liste Ã  chaque mise Ã  jour pour Ã©viter des donnÃ©es obsolÃ¨tes
     for (int i = everyoneButMe; i < gNumberOfPlayers; i++) {
         Entity* ent = *(Entity**)(*entList + (i * sizeof(uintptr_t)));
 
@@ -78,20 +78,20 @@ void MainHackLoop()
     }
 
     if (bAimbotStatus && (GetAsyncKeyState(VK_XBUTTON2) & 0x8000)) {
-        if (!bTargetLocked && bestTarget) {  // Vérifier si aucune cible n'est verrouillée et qu'il y a une cible à verrouiller
+        if (!bTargetLocked && bestTarget) {  // VÃ©rifier si aucune cible n'est verrouillÃ©e et qu'il y a une cible Ã  verrouiller
             bTargetLocked = true;
             lockedTarget = bestTarget;
         }
     }
 
     if (bTriggerbotStatus && (GetAsyncKeyState(VK_XBUTTON1) & 0x8000)) {
-        if (!bTargetLocked && bestTarget) {  // Vérifiez si aucune cible n'est verrouillée, qu'il y a une cible à verrouiller et qu'elle est dans le FOV
+        if (!bTargetLocked && bestTarget) {  // VÃ©rifier si aucune cible n'est verrouillÃ©e, qu'il y a une cible Ã  verrouiller et qu'elle est dans le FOV
             bTargetLocked = true;
             lockedTarget = bestTarget;
         }
     }
 
-    if (bTargetLocked && lockedTarget && (GetAsyncKeyState(VK_XBUTTON2) & 0x8000)) {  // Si une cible est verrouillée
+    if (bTargetLocked && lockedTarget && (GetAsyncKeyState(VK_XBUTTON2) & 0x8000)) {  // Si une cible est verrouillÃ©e
         Aimbot(lockedTarget, localPlayer);
     }
 
