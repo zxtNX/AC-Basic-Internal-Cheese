@@ -152,7 +152,7 @@ void DrawBoxAndSnaplines(EntityInfo& info, Entity* localPlayer)
     glEnd();
 
     // Get the bottom Y coordinate of the box
-    float boxBottomY = info.screenY - 9.5f * distanceAdjustment; // Adjust this calculation based on your existing box drawing code
+    float boxBottomY = info.screenY - 9.5f * distanceAdjustment; // Adjust this calculation based on our existing box drawing code
 
     DrawHealthBar(info, localPlayer, distanceAdjustment, topAdjustment);
 
