@@ -165,7 +165,7 @@ void DrawSnaplines(EntityInfo& info, Entity* localPlayer, float boxBottomY)
 {
     // Si la cible est un ennemi, afficher la snapline
     if (info.entity->team != localPlayer->team) {
-        // Couleur des lignes (bleu par défaut)
+        // Couleur des lignes (rouge par défaut)
         glColor3ub(255, 0, 0);
 
         // Dessiner la ligne de l'ennemi à la position du joueur local
